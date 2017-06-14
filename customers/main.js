@@ -7,7 +7,7 @@ console.log('you connected dawg');
 
   'use strict';
 
-  fetch('https://randomuser.me/api/?results=12')
+  fetch('https://randomuser.me/api/?nat=us&results=12')
     .then
     (
 
@@ -25,14 +25,15 @@ console.log('you connected dawg');
         `
         <div class="customer-container">
           <img src=${object.img}>
+
           <h2>${object.name}</h2>
-          <p>${object.name}@email.com</p>
-          <p>${object.address}</p>
-          <p>${object.stateZip}</p>
-          <p>${object.phone}</p>
+          <hr>
+          <p class="email">${object.name}@email.com</p>
+          <p class="address">${object.address}</p>
+          <p class="address">${object.stateZip}</p>
+          <p class="phone">${object.phone}</p>
         </div>
         `
-
 
         document.getElementById('customers').innerHTML += markup;
       }
@@ -43,8 +44,8 @@ console.log('you connected dawg');
             users.img = data.results[i].picture.large;
             users.name = data.results[i].name.first + " " +  data.results[i].name.last;
             users.company = " ";
-            users.address =  data.results[i].location.street + " " + data.results[i].location.city;
-            users.stateZip =  data.results[i].location.state + ", " +  data.results[i].location.postcode;
+            users.address =  data.results[i].location.street;
+            users.stateZip = data.results[i].location.city; + " " + data.results[i].location.state + ", " +  data.results[i].location.postcode;
             users.phone =  data.results[i].phone;
             userArray.push(users);
 
