@@ -6,6 +6,7 @@ console.log('you connected dawg');
 (function () {
 
   'use strict';
+
   fetch('https://randomuser.me/api/?results=12')
     .then
     (
@@ -17,50 +18,42 @@ console.log('you connected dawg');
           console.log('looks like there was a problem. Its a trap!' +response.status);
           return;
         }
+        response.json().then(function(data){
+
+        function markItUp(object){
+        var markup =
+        `
+        <div class="customer-container">
+          <img src=${object.img}>
+          <h2>${object.name}</h2>
+          <p>${object.name}@email.com</p>
+          <p>${object.address}</p>
+          <p>${object.stateZip}</p>
+          <p>${object.phone}</p>
+        </div>
+        `
 
 
-
-      response.json().then(function(data){
-        console.log(data.results[4].name.first);
-        console.log(data.results.length);
-
-
+        document.getElementById('customers').innerHTML += markup;
+      }
         let userArray = [];
 
         for (var i = 0; i < data.results.length; i++) {
             let users = {}
-            users.img = data.results[i].picture.medium;
+            users.img = data.results[i].picture.large;
             users.name = data.results[i].name.first + " " +  data.results[i].name.last;
             users.company = " ";
             users.address =  data.results[i].location.street + " " + data.results[i].location.city;
             users.stateZip =  data.results[i].location.state + ", " +  data.results[i].location.postcode;
             users.phone =  data.results[i].phone;
-
             userArray.push(users);
 
-          }
+           }
           console.log(userArray);
 
-
-          function renderUser(array)
-          {
-            let parentNode = document.getElementById('customers');
-            let ulNode = document.createElement('ul');
-            ulNode.id = "customer-container";
-
-            parentNode.appendChild(ulNode);
-
-            for (var i = 0; i < array.length; i++)
-            {
-              let listMaker= document.createElement('li');
-              let childNode = array[i];
-              ulNode.appendChild(childNode);
-            }
-
-          }
-
-
-          renderUser(userArray);
+        for (var i = 0; i < userArray.length; i++) {
+          markItUp(userArray[i]);
+        }
 
         });
       }
