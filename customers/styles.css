@@ -52,6 +52,10 @@ h2 {
   color: #CBCBCB;
 }
 
+.address {
+  text-transform: capitalize;
+}
+
 .phone, .address {
   margin: 0;
   padding: 0;

@@ -25,7 +25,6 @@ console.log('you connected dawg');
         `
         <div class="customer-container">
           <img src=${object.img}>
-
           <h2>${object.name}</h2>
           <hr>
           <p class="email">${object.name}@email.com</p>
@@ -45,7 +44,7 @@ console.log('you connected dawg');
             users.name = data.results[i].name.first + " " +  data.results[i].name.last;
             users.company = " ";
             users.address =  data.results[i].location.street;
-            users.stateZip = data.results[i].location.city; + " " + data.results[i].location.state + ", " +  data.results[i].location.postcode;
+            users.stateZip = data.results[i].location.city + " " + data.results[i].location.state + ", " +  data.results[i].location.postcode;
             users.phone =  data.results[i].phone;
             userArray.push(users);
 
